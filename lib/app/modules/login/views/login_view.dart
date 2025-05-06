@@ -9,16 +9,41 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('LoginView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'LoginView is working',
-          style: TextStyle(fontSize: 20),
+        appBar: AppBar(
+          title: const Text('LoginView'),
+          centerTitle: true,
         ),
-      ),
-    );
+        body: ListView(
+          padding: EdgeInsets.all(20),
+          children: [
+            TextField(
+              controller: controller.emailC,
+              decoration: InputDecoration(
+                  labelText: "Email", border: OutlineInputBorder()),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextField(
+              controller: controller.passC,
+              decoration: InputDecoration(
+                  labelText: "Password", border: OutlineInputBorder()),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Obx(
+              () => ElevatedButton(
+                  onPressed: () {
+                    if (controller.isLoading.isFalse) {
+                      //eksekusi login
+                      controller.login();
+                    }
+                  },
+                  child: Text(
+                      controller.isLoading.isFalse ? "LOGIN" : "LOADING....")),
+            )
+          ],
+        ));
   }
 }
