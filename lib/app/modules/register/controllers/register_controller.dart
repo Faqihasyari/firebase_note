@@ -11,6 +11,7 @@ class RegisterController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   void register() async {
+    isLoading.value = true;
     if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
       try {
         UserCredential userCredential =
@@ -20,10 +21,16 @@ class RegisterController extends GetxController {
         );
         print(userCredential);
 
+        isLoading.value = false;
+
         Get.offAllNamed(Routes.HOME);
       } on FirebaseAuthException catch (e) {
+        isLoading.value = false;
+
         print(e.code);
       } catch (e) {
+        isLoading.value = false;
+
         print(e);
       }
     }
