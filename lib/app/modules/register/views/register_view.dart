@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:myfirebase/app/routes/app_pages.dart';
 
-import '../controllers/login_controller.dart';
+import '../controllers/register_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+class RegisterView extends GetView<RegisterController> {
+  const RegisterView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('LoginView'),
+          title: const Text('REGISTER'),
           centerTitle: true,
         ),
         body: ListView(
@@ -38,16 +37,12 @@ class LoginView extends GetView<LoginController> {
                   onPressed: () {
                     if (controller.isLoading.isFalse) {
                       //eksekusi login
-                      controller.login();
+                      controller.register();
                     }
                   },
                   child: Text(
                       controller.isLoading.isFalse ? "LOGIN" : "LOADING....")),
             ),
-            TextButton(
-              onPressed: () => Get.toNamed(Routes.REGISTER),
-              child: Text("Register"),
-            )
           ],
         ));
   }
