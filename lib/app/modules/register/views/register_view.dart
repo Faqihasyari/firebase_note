@@ -40,8 +40,9 @@ class RegisterView extends GetView<RegisterController> {
                       controller.register();
                     }
                   },
-                  child: Text(
-                      controller.isLoading.isFalse ? "LOGIN" : "LOADING....")),
+                  child: Text(controller.isLoading.isFalse
+                      ? "REGISTER"
+                      : "LOADING....")),
             ),
           ],
         ));
