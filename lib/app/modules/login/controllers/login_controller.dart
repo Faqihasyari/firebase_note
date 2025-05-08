@@ -28,7 +28,7 @@ class LoginController extends GetxController {
           print('User belum terverifikasi & tidak bisa login');
           Get.defaultDialog(
               title: "Belum terverifikasi",
-              middleText: "Apakah kamu ingin mengirimkan email verifikasi?",
+              middleText: "Apakah kamu ingin mengirimkan email verifikasi kembali?",
               actions: [
                 OutlinedButton(
                     onPressed: () {
