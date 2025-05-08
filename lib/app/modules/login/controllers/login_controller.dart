@@ -21,13 +21,11 @@ class LoginController extends GetxController {
         print(userCredential);
         isLoading.value = false;
 
-        if(userCredential.user!.emailVerified == true){
+        if (userCredential.user!.emailVerified == true) {
           Get.offAllNamed(Routes.HOME);
         } else {
           print('User belum terverifikasi & tidak bisa login');
         }
-
-        Get.offAllNamed(Routes.HOME);
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
         print(e.code);

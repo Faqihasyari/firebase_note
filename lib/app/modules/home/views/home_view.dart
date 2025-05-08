@@ -13,7 +13,12 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HOMEVIEW'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () => controller.logout(), icon: Icon(Icons.logout))
+          IconButton(
+              onPressed: () {
+                Get.put(HomeController());
+                controller.logout();
+              },
+              icon: Icon(Icons.logout))
         ],
       ),
       body: const Center(
