@@ -23,7 +23,7 @@ void main() async {
         }
         return GetMaterialApp(
           title: "Application",
-          initialRoute: snap.data != null ? Routes.LOGIN : Routes.LOGIN,
+          initialRoute: snap.data != null && snap.data!.emailVerified == true ? Routes.LOGIN : Routes.LOGIN,
           getPages: AppPages.routes,
         );
       }
