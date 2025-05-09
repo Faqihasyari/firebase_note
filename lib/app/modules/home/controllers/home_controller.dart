@@ -11,6 +11,7 @@ class HomeController extends GetxController {
       Get.offAllNamed(Routes.LOGIN);
     } catch (e) {
       print(e);
+      Get.snackbar("ERROR", "Tidak Bisa LogOut")
     }
   }
 }

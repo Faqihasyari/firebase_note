@@ -10,6 +10,10 @@ class RegisterController extends GetxController {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
+  void errMsg(String msg) {
+    Get.snackbar("ERROR", msg);
+  }
+
   void register() async {
     isLoading.value = true;
     if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
@@ -29,13 +33,17 @@ class RegisterController extends GetxController {
         Get.offAllNamed(Routes.LOGIN);
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
+        errMsg(e.code);
 
         print(e.code);
       } catch (e) {
         isLoading.value = false;
+        errMsg("$e");
 
         print(e);
       }
+    } else {
+      errMsg("Email dan password tidak boleh kosong");
     }
   }
 }

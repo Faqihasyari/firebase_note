@@ -12,15 +12,13 @@ class LoginController extends GetxController {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
-
-  void errMsg(String msg){
-      Get.snackbar("ERROR", msg);
-
+  void errMsg(String msg) {
+    Get.snackbar("ERROR", msg);
   }
 
   void login() async {
     if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
-        isLoading.value = true;
+      isLoading.value = true;
       try {
         UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: emailC.text,
@@ -35,7 +33,8 @@ class LoginController extends GetxController {
           print('User belum terverifikasi & tidak bisa login');
           Get.defaultDialog(
               title: "Belum terverifikasi",
-              middleText: "Apakah kamu ingin mengirimkan email verifikasi kembali?",
+              middleText:
+                  "Apakah kamu ingin mengirimkan email verifikasi kembali?",
               actions: [
                 OutlinedButton(
                     onPressed: () {
@@ -51,8 +50,8 @@ class LoginController extends GetxController {
                         Get.snackbar("BERHASIL",
                             "Kami Telah Mengirimkan Email Verifikasi");
                       } catch (e) {
-                        Get.back(); 
-                        Get.snackbar("ERROR",
+                        Get.back();
+                        errMsg(
                             "Kamu terlalu cepat meminta kirim email verifikasi");
                       }
                     },
