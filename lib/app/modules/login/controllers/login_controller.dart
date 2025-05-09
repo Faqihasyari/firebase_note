@@ -11,10 +11,17 @@ class LoginController extends GetxController {
   TextEditingController passC = TextEditingController(text: "password");
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
+
+  void errMsg(String msg){
+      Get.snackbar("ERROR", msg);
+
+  }
+
   void login() async {
     if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
-      try {
         isLoading.value = true;
+      try {
         UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: emailC.text,
           password: passC.text,
@@ -44,7 +51,7 @@ class LoginController extends GetxController {
                         Get.snackbar("BERHASIL",
                             "Kami Telah Mengirimkan Email Verifikasi");
                       } catch (e) {
-                        Get.back();
+                        Get.back(); 
                         Get.snackbar("ERROR",
                             "Kamu terlalu cepat meminta kirim email verifikasi");
                       }
@@ -55,7 +62,10 @@ class LoginController extends GetxController {
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
         print(e.code);
+        errMsg(e.code);
       }
+    } else {
+      errMsg("Email dan Password tidak boleh kosong");
     }
   }
 }
