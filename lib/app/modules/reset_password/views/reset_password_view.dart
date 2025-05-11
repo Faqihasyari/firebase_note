@@ -13,12 +13,19 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
         title: const Text('RESET PASSWORD'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'ResetPasswordView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body:ListView(
+        padding: EdgeInsets.all(20),
+        children: [
+          TextField(
+              controller: controller.emailC,
+              decoration: InputDecoration(
+                  labelText: "Email", border: OutlineInputBorder()),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+        ],
+      )
     );
   }
 }
