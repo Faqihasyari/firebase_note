@@ -30,6 +30,18 @@ class LoginView extends GetView<LoginController> {
               decoration: InputDecoration(
                   labelText: "Password", border: OutlineInputBorder()),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 150,
+                  child: TextButton(
+                    onPressed: () => Get.toNamed(Routes.RESET_PASSWORD),
+                    child: Text("Forgor Password?"),
+                  ),
+                ),
+              ],
+            ),
             SizedBox(
               height: 20,
             ),
