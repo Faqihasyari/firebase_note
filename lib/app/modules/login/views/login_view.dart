@@ -36,7 +36,9 @@ class LoginView extends GetView<LoginController> {
                         onPressed: () {
                           controller.isLHidden.toggle();
                         },
-                        icon: Icon(Icons.remove_red_eye))),
+                        icon: Icon(controller.isLHidden.isTrue
+                            ? Icons.remove_red_eye
+                            : Icons.visibility_off))),
               ),
             ),
             Row(
