@@ -26,9 +26,16 @@ class LoginView extends GetView<LoginController> {
               height: 20,
             ),
             TextField(
+              obscureText: controller.isLHidden.value,
               controller: controller.passC,
               decoration: InputDecoration(
-                  labelText: "Password", border: OutlineInputBorder()),
+                  labelText: "Password",
+                  border: OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        controller.isLHidden.toggle();
+                      },
+                      icon: Icon(Icons.remove_red_eye))),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

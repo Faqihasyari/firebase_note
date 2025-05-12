@@ -6,6 +6,7 @@ import 'package:myfirebase/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   RxBool isLoading = false.obs;
+  RxBool isLHidden = true.obs;
   TextEditingController emailC =
       TextEditingController(text: "faqih8158@gmail.com");
   TextEditingController passC = TextEditingController(text: "password");
