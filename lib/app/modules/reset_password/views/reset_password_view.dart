@@ -9,14 +9,14 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('RESET PASSWORD'),
-        centerTitle: true,
-      ),
-      body:ListView(
-        padding: EdgeInsets.all(20),
-        children: [
-          TextField(
+        appBar: AppBar(
+          title: const Text('RESET PASSWORD'),
+          centerTitle: true,
+        ),
+        body: ListView(
+          padding: EdgeInsets.all(20),
+          children: [
+            TextField(
               controller: controller.emailC,
               decoration: InputDecoration(
                   labelText: "Email", border: OutlineInputBorder()),
@@ -24,8 +24,18 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
             SizedBox(
               height: 20,
             ),
-        ],
-      )
-    );
+            Obx(
+              () => ElevatedButton(
+                  onPressed: () {
+                    if (controller.isLoading.isFalse) {
+                      //eksekusi login
+                      controller.reset();
+                    }
+                  },
+                  child: Text(
+                      controller.isLoading.isFalse ? "RESET" : "LOADING....")),
+            ),
+          ],
+        ));
   }
 }
