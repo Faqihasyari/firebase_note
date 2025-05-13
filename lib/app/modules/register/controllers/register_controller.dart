@@ -7,6 +7,9 @@ class RegisterController extends GetxController {
   RxBool isLHidden = true.obs;
   RxBool isLoading = false.obs;
   TextEditingController emailC = TextEditingController();
+  TextEditingController nameC = TextEditingController();
+  TextEditingController phoneC = TextEditingController();
+
   TextEditingController passC = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;

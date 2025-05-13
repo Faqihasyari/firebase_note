@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:myfirebase/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -15,10 +16,9 @@ class HomeView extends GetView<HomeController> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.put(HomeController());
-                controller.logout();
+                Get.toNamed(Routes.PROFILE);
               },
-              icon: Icon(Icons.logout))
+              icon: Icon(Icons.person))
         ],
       ),
       body: const Center(
@@ -26,6 +26,10 @@ class HomeView extends GetView<HomeController> {
           'DATA BELUM ADA',
           style: TextStyle(fontSize: 20),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }
