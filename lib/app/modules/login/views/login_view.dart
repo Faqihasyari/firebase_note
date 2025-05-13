@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:myfirebase/app/routes/app_pages.dart';
 
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+  LoginView({super.key});
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
+    if (box.read("rememberMe") != null) {
+      controller.emailC.text = box.read("rememberMe")["email"];
+      controller.passC.text = box.read("rememberMe")["pass"];
+      controller.rememberMe.value = true;
+    }
     return Scaffold(
         appBar: AppBar(
           title: const Text('LoginView'),

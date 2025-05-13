@@ -10,8 +10,8 @@ class LoginController extends GetxController {
   RxBool rememberMe = false.obs;
   RxBool isLHidden = true.obs;
   TextEditingController emailC =
-      TextEditingController(text: "faqih8158@gmail.com");
-  TextEditingController passC = TextEditingController(text: "password");
+      TextEditingController();
+  TextEditingController passC = TextEditingController( );
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -33,8 +33,14 @@ class LoginController extends GetxController {
         isLoading.value = false;
 
         if (userCredential.user!.emailVerified == true) {
-          if(rememberMe.isTrue){
-
+          if(box.read("rememberMe") != null){
+            await box.remove("rememberMe");
+          }
+          if (rememberMe.isTrue){
+            await box.write("rememberMe", {
+              "email": emailC.text,
+              "pass": passC.text,
+            });
           }
           Get.offAllNamed(Routes.HOME);
         } else {
