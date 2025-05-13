@@ -41,6 +41,16 @@ class LoginView extends GetView<LoginController> {
                             : Icons.visibility_off))),
               ),
             ),
+            Obx(
+              () => CheckboxListTile(
+                value: controller.rememberMe.value,
+                onChanged: (value) {
+                  controller.rememberMe.toggle();
+                },
+                title: Text('Remember Me'),
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

@@ -2,16 +2,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:myfirebase/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   RxBool isLoading = false.obs;
+  RxBool rememberMe = false.obs;
   RxBool isLHidden = true.obs;
   TextEditingController emailC =
       TextEditingController(text: "faqih8158@gmail.com");
   TextEditingController passC = TextEditingController(text: "password");
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  final box = GetStorage();
 
   void errMsg(String msg) {
     Get.snackbar("ERROR", msg);
@@ -29,6 +33,9 @@ class LoginController extends GetxController {
         isLoading.value = false;
 
         if (userCredential.user!.emailVerified == true) {
+          if(rememberMe.isTrue){
+
+          }
           Get.offAllNamed(Routes.HOME);
         } else {
           print('User belum terverifikasi & tidak bisa login');

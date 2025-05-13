@@ -24,10 +24,21 @@ class RegisterView extends GetView<RegisterController> {
             SizedBox(
               height: 20,
             ),
-            TextField(
-              controller: controller.passC,
-              decoration: InputDecoration(
-                  labelText: "Password", border: OutlineInputBorder()),
+            Obx(
+              () => TextField(
+                obscureText: controller.isLHidden.value,
+                controller: controller.passC,
+                decoration: InputDecoration(
+                    labelText: "Password",
+                    border: OutlineInputBorder(),
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          controller.isLHidden.toggle();
+                        },
+                        icon: Icon(controller.isLHidden.isTrue
+                            ? Icons.remove_red_eye
+                            : Icons.visibility_off))),
+              ),
             ),
             SizedBox(
               height: 20,

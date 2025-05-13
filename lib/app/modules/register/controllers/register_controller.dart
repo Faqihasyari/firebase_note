@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:myfirebase/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
+  RxBool isLHidden = true.obs;
   RxBool isLoading = false.obs;
   TextEditingController emailC = TextEditingController();
   TextEditingController passC = TextEditingController();
