@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ class RegisterController extends GetxController {
   TextEditingController passC = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance; 
 
   void errMsg(String msg) {
     Get.snackbar("ERROR", msg);
@@ -20,7 +22,10 @@ class RegisterController extends GetxController {
 
   void register() async {
     isLoading.value = true;
-    if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
+    if (nameC.text.isNotEmpty &&
+        phoneC.text.isNotEmpty &&
+        emailC.text.isNotEmpty &&
+        passC.text.isNotEmpty) {
       try {
         UserCredential userCredential =
             await auth.createUserWithEmailAndPassword(
@@ -33,6 +38,14 @@ class RegisterController extends GetxController {
 
         //KIRIM LINK EMAIL VERIFIKASI
         await userCredential.user!.sendEmailVerification();
+
+        firestore.collection("users").doc(userCredential.user!.uid).set({
+          "name": nameC.text,
+          "phone": phoneC.text,
+          "email": emailC.text,
+          "uid": userCredential.user!.uid,
+          "createdAt": DateTime.now().toIso8601String()
+        });
 
         Get.offAllNamed(Routes.LOGIN);
       } on FirebaseAuthException catch (e) {
