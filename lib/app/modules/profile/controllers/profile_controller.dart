@@ -22,14 +22,14 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> getProfile() async {
+  Future<Map<String, dynamic>?> getProfile() async {
     try {
       String uid = auth.currentUser!.uid;
-      DocumentSnapshot<Map<String, dynamic>> docUser = await firestore.collection("user").doc(uid).get();
-      print(docUser.data());
-      // return docUser;
+      DocumentSnapshot<Map<String, dynamic>> docUser =
+          await firestore.collection("users").doc(uid).get();
+      return docUser.data();
     } catch (e) {
-       print(e);
+      print(e);
       Get.snackbar("Terjadi Kesalahan", "Tidak dapat get data user");
     }
   }

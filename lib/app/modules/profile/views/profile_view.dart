@@ -20,41 +20,51 @@ class ProfileView extends GetView<ProfileController> {
                 icon: Icon(Icons.logout))
           ],
         ),
-        body: FutureBuilder(
+        body: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               }
-              return ListView(
-                padding: EdgeInsets.all(20),
-                children: [
-                  TextField(
-                    controller: controller.emailC,
-                    decoration: InputDecoration(
-                        labelText: "Email", border: OutlineInputBorder()),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    controller: controller.nameC,
-                    decoration: InputDecoration(
-                        labelText: "Name", border: OutlineInputBorder()),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    controller: controller.phoneC,
-                    decoration: InputDecoration(
-                        labelText: "Phone", border: OutlineInputBorder()),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                ],
-              );
+              if (snapshot.data == null) {
+                return Center(
+                  child: Text('No data'),
+                );
+              } else {
+                controller.emailC.text = snapshot.data!["email"];
+                controller.nameC.text = snapshot.data!["name"];
+                controller.phoneC.text = snapshot.data!["phone"];
+
+                return ListView(
+                  padding: EdgeInsets.all(20),
+                  children: [
+                    TextField(
+                      controller: controller.emailC,
+                      decoration: InputDecoration(
+                          labelText: "Email", border: OutlineInputBorder()),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: controller.nameC,
+                      decoration: InputDecoration(
+                          labelText: "Name", border: OutlineInputBorder()),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: controller.phoneC,
+                      decoration: InputDecoration(
+                          labelText: "Phone", border: OutlineInputBorder()),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                );
+              }
             }));
   }
 }
