@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/profile_controller.dart';
 
@@ -40,6 +41,7 @@ class ProfileView extends GetView<ProfileController> {
                   children: [
                     TextField(
                       controller: controller.emailC,
+                      readOnly: true,
                       decoration: InputDecoration(
                           labelText: "Email", border: OutlineInputBorder()),
                     ),
@@ -62,6 +64,18 @@ class ProfileView extends GetView<ProfileController> {
                     SizedBox(
                       height: 20,
                     ),
+                    Text(
+                      "Created At :",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(DateFormat.yMMMEd()
+                        .add_jms()
+                        .format(DateTime.parse(snapshot.data!["createdAt"]))),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {}, child: Text("UPDATE PROFILE"))
                   ],
                 );
               }
