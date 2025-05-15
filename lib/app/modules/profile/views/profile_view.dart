@@ -74,8 +74,14 @@ class ProfileView extends GetView<ProfileController> {
                     SizedBox(
                       height: 40,
                     ),
-                    ElevatedButton(
-                        onPressed: () {}, child: Text("UPDATE PROFILE"))
+                    Obx(
+                      () => ElevatedButton(
+                          onPressed: () {
+                            if (controller.isloading.isFalse){
+                              controller.updateProfile();
+                            }
+                          }, child: Text(controller.isloading.isFalse ? "LOADING...." : "UPDATE PROFILE")),
+                    )
                   ],
                 );
               }
