@@ -50,7 +50,7 @@ class ProfileController extends GetxController {
       isloading.value = false;
 
       print(e);
-      Get.snackbar("Terjadi Kesalahan", "Tidak dapat get data user");
+      Get.snackbar("Terjadi Kesalahan", "Tidak dapat update data user");
     }
   }
 }
