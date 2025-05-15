@@ -41,10 +41,10 @@ class ProfileController extends GetxController {
       isloading.value = true;
       String uid = auth.currentUser!.uid;
 
-      await firestore
-          .collection("users")
-          .doc(uid)
-          .set({"name": nameC.text, "phone": phoneC.text});
+      await firestore.collection("users").doc(uid).update({
+        "name": nameC.text,
+        "phone": phoneC.text,
+      });
       isloading.value = false;
     } catch (e) {
       isloading.value = false;
