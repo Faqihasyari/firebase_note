@@ -32,6 +32,25 @@ class ProfileController extends GetxController {
     } catch (e) {
       print(e);
       Get.snackbar("Terjadi Kesalahan", "Tidak dapat get data user");
+      return null;
+    }
+  }
+
+  void updateProfile() async {
+    try {
+      isloading.value = true;
+      String uid = auth.currentUser!.uid;
+
+      await firestore
+          .collection("users")
+          .doc(uid)
+          .set({"name": nameC.text, "phone": phoneC.text});
+      isloading.value = false;
+    } catch (e) {
+      isloading.value = false;
+
+      print(e);
+      Get.snackbar("Terjadi Kesalahan", "Tidak dapat get data user");
     }
   }
 }
