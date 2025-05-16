@@ -65,6 +65,7 @@ class ProfileView extends GetView<ProfileController> {
                       height: 20,
                     ),
                     TextField(
+                      obscureText: controller.isHidden.value,
                       controller: controller.phoneC,
                       decoration: InputDecoration(
                           labelText: "New Password", border: OutlineInputBorder()),

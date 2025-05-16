@@ -6,6 +6,8 @@ import 'package:myfirebase/app/routes/app_pages.dart';
 
 class ProfileController extends GetxController {
   RxBool isloading = false.obs;
+  RxBool isHidden = true.obs;
+
   TextEditingController emailC = TextEditingController();
   TextEditingController nameC = TextEditingController();
   TextEditingController phoneC = TextEditingController();
