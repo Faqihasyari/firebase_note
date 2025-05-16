@@ -64,6 +64,14 @@ class ProfileView extends GetView<ProfileController> {
                     SizedBox(
                       height: 20,
                     ),
+                    TextField(
+                      controller: controller.phoneC,
+                      decoration: InputDecoration(
+                          labelText: "New Password", border: OutlineInputBorder()),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Text(
                       "Created At :",
                       style: TextStyle(fontWeight: FontWeight.bold),
