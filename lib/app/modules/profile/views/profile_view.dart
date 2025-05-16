@@ -41,6 +41,8 @@ class ProfileView extends GetView<ProfileController> {
                   children: [
                     TextField(
                       controller: controller.emailC,
+                      keyboardType: TextInputType.emailAddress,
+
                       readOnly: true,
                       decoration: InputDecoration(
                           labelText: "Email", border: OutlineInputBorder()),
@@ -58,17 +60,24 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                     TextField(
                       controller: controller.phoneC,
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                           labelText: "Phone", border: OutlineInputBorder()),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    TextField(
-                      obscureText: controller.isHidden.value,
-                      controller: controller.phoneC,
-                      decoration: InputDecoration(
-                          labelText: "New Password", border: OutlineInputBorder()),
+                    Obx(
+                      () => TextField(
+                        obscureText: controller.isHidden.value,
+                        controller: controller.passC,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(onPressed: () {
+                            controller.isHidden.toggle();
+                            
+                          }, icon: Icon(controller.isHidden.isFalse ? Icons.remove_red_eye : Icons.remove_red_eye_outlined)),
+                            labelText: "New Password", border: OutlineInputBorder()),
+                      ),
                     ),
                     SizedBox(
                       height: 20,

@@ -11,6 +11,8 @@ class ProfileController extends GetxController {
   TextEditingController emailC = TextEditingController();
   TextEditingController nameC = TextEditingController();
   TextEditingController phoneC = TextEditingController();
+  TextEditingController passC= TextEditingController();
+
 
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
