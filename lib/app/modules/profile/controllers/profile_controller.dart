@@ -37,7 +37,8 @@ class ProfileController extends GetxController {
   }
 
   void updateProfile() async {
-    try {
+    if(emailC.text.isNotEmpty && nameC.text.isNotEmpty && phoneC.text.isNotEmpty){
+      try {
       isloading.value = true;
       String uid = auth.currentUser!.uid;
 
@@ -52,5 +53,9 @@ class ProfileController extends GetxController {
       print(e);
       Get.snackbar("Terjadi Kesalahan", "Tidak dapat update data user");
     }
+    } else {
+      Get.snackbar("Perhatian", "Isi semua form");
+    }
+    
   }
 }
