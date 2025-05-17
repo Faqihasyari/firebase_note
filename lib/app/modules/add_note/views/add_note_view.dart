@@ -16,7 +16,21 @@ class AddNoteView extends GetView<AddNoteController> {
       body: ListView(
         padding: EdgeInsets.all(20),
         children: [
-          
+          TextField(
+            controller: controller.titleC,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Title'
+            ),
+          ),
+          SizedBox(height: 20,),
+          TextField(
+            controller: controller.desC,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Description'
+            ),
+          )
         ],
       )
     );
