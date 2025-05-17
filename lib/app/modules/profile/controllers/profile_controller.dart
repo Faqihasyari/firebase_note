@@ -50,6 +50,11 @@ class ProfileController extends GetxController {
         "name": nameC.text,
         "phone": phoneC.text,
       });
+
+      if(passC.text.isNotEmpty){
+        //update password
+      }
+
       isloading.value = false;
     } catch (e) {
       isloading.value = false;

@@ -35,7 +35,6 @@ class ProfileView extends GetView<ProfileController> {
                 controller.emailC.text = snapshot.data!["email"];
                 controller.nameC.text = snapshot.data!["name"];
                 controller.phoneC.text = snapshot.data!["phone"];
-
                 return ListView(
                   padding: EdgeInsets.all(20),
                   children: [
