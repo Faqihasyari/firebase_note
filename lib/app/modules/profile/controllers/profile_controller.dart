@@ -53,6 +53,14 @@ class ProfileController extends GetxController {
 
       if(passC.text.isNotEmpty){
         //update password
+        await  auth.currentUser!.updatePassword(passC.text);
+        await auth.signOut();
+        isloading.value = false;
+        Get.offAllNamed(Routes.LOGIN);
+
+
+      } else {
+        isloading.value = false;
       }
 
       isloading.value = false;
