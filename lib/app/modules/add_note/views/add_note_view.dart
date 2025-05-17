@@ -10,15 +10,15 @@ class AddNoteView extends GetView<AddNoteController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AddNoteView'),
+        title: const Text('ADD NOTE'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'AddNoteView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: [
+          
+        ],
+      )
     );
   }
 }
