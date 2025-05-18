@@ -30,7 +30,13 @@ class AddNoteView extends GetView<AddNoteController> {
               border: OutlineInputBorder(),
               labelText: 'Description'
             ),
-          )
+          ),
+          SizedBox(height: 30,),
+          ElevatedButton(onPressed: () {
+            if (controller.isLoading.isFalse) {
+              controller.addNote();
+            }
+          }, child: Text(controller.isLoading.isFalse ? "ADD NOTE" : "LOADING...")),
         ],
       )
     );
