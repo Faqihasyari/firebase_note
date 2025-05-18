@@ -3,12 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:myfirebase/app/routes/app_pages.dart';
 
-class  HomeController extends GetxController {
+class HomeController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Stream streamNotes()async*{
+  Stream<QuerySnapshot<Map<String, dynamic>>> streamNotes() async* {
     String uid = auth.currentUser!.uid;
 
-    yield* await firestore.collection("users").doc(uid).collection("notes").snapshots();
+    yield* await firestore
+        .collection("users")
+        .doc(uid)
+        .collection("notes")
+        .orderBy("createdAt")
+        .snapshots();
   }
 }
