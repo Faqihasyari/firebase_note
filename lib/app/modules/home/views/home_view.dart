@@ -9,6 +9,7 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('HOMEVIEW'),
@@ -21,14 +22,31 @@ class HomeView extends GetView<HomeController> {
               icon: Icon(Icons.person))
         ],
       ),
-      body: const Center(
-        child: Text(
-          'DATA BELUM ADA',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: StreamBuilder(
+          stream: controller.streamNotes(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                    child: Text("${index + 1}"),
+                  ),
+                  title: Text("Item ${index + 1}"),
+                  subtitle: Text("Subtitle ${index + 1}"),
+                  trailing:
+                      IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                );
+              },
+            );
+          }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.ADD_NOTE);
+        },
         child: Icon(Icons.add),
       ),
     );
