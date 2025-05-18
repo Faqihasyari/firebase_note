@@ -15,9 +15,17 @@ class AddNoteController extends GetxController {
     if (titleC.text.isNotEmpty && desC.text.isNotEmpty) {
       isLoading.value = true;
       try {
-        await firestore.collection("users").doc()
+        String uid = auth.currentUser!.uid;
+        await firestore.collection("users").doc(uid).collection("notes").add({
+          "title": titleC.text,
+          "desc": desC.text,
+          "createdAt": DateTime.now().toIso8601String()
+        });
+      isLoading.value = false;
+      Get.back();
+
       } catch (e) {
-      isLoading.value = true;
+      isLoading.value = false;
 
       Get.snackbar('Error', 'Tidak dapat menambahkan note');
         
