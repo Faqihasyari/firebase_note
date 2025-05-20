@@ -46,7 +46,9 @@ class HomeView extends GetView<HomeController> {
                   title: Text("${note['title']}"),
                   subtitle: Text("${note['desc']}"),
                   trailing:
-                      IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                      IconButton(onPressed: () {
+                        controller.deleteNote(docNote.id);
+                      }, icon: Icon(Icons.delete)),
                 );
               },
             );

@@ -16,4 +16,18 @@ class HomeController extends GetxController {
         .orderBy("createdAt")
         .snapshots();
   }
+
+  void deleteNote(String docID) async {
+    try {
+      String uid = auth.currentUser!.uid;
+      await firestore
+          .collection("users")
+          .doc(uid)
+          .collection("notes")
+          .doc(docID)
+          .delete();
+    } catch (e) {
+      Get.snackbar("Error", "Tidak dapat menghapus catatan");
+    }
+  }
 }

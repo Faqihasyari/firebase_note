@@ -41,7 +41,6 @@ class ProfileView extends GetView<ProfileController> {
                     TextField(
                       controller: controller.emailC,
                       keyboardType: TextInputType.emailAddress,
-
                       readOnly: true,
                       decoration: InputDecoration(
                           labelText: "Email", border: OutlineInputBorder()),
@@ -71,11 +70,15 @@ class ProfileView extends GetView<ProfileController> {
                         obscureText: controller.isHidden.value,
                         controller: controller.passC,
                         decoration: InputDecoration(
-                          suffixIcon: IconButton(onPressed: () {
-                            controller.isHidden.toggle();
-                            
-                          }, icon: Icon(controller.isHidden.isFalse ? Icons.remove_red_eye : Icons.remove_red_eye_outlined)),
-                            labelText: "New Password", border: OutlineInputBorder()),
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.isHidden.toggle();
+                                },
+                                icon: Icon(controller.isHidden.isFalse
+                                    ? Icons.remove_red_eye
+                                    : Icons.remove_red_eye_outlined)),
+                            labelText: "New Password",
+                            border: OutlineInputBorder()),
                       ),
                     ),
                     SizedBox(
@@ -94,10 +97,13 @@ class ProfileView extends GetView<ProfileController> {
                     Obx(
                       () => ElevatedButton(
                           onPressed: () {
-                            if (controller.isloading.isFalse){
+                            if (controller.isloading.isFalse) {
                               controller.updateProfile();
                             }
-                          }, child: Text(controller.isloading.isFalse ? "LOADING...." : "UPDATE PROFILE")),
+                          },
+                          child: Text(controller.isloading.isFalse
+                              ? "UPDATE PROFILE"
+                              : "LOADING....")),
                     )
                   ],
                 );
