@@ -13,9 +13,9 @@ class EditNoteView extends GetView<EditNoteController> {
         title: const Text('EditNoteView'),
         centerTitle: true,
       ),
-      body: const Center(
+      body: Center(
         child: Text(
-          'EditNoteView is working',
+          '${Get.arguments}',
           style: TextStyle(fontSize: 20),
         ),
       ),
