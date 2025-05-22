@@ -40,6 +40,7 @@ class HomeView extends GetView<HomeController> {
                 var docNote = snapshot.data!.docs[index];
                 Map<String, dynamic> note = docNote.data();
                 return ListTile(
+                  onTap: () => Get.toNamed(Routes.ADD_NOTE),
                   leading: CircleAvatar(
                     child: Text("${index + 1}"),
                   ),
