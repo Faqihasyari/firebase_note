@@ -27,5 +27,28 @@ class EditNoteController extends GetxController {
   }
   
   
-  void editNote (){}
+  void editNote (String docID)async{
+    if (titleC.text.isNotEmpty && desC.text.isNotEmpty) {
+      
+    isLoading.value = true;
+    try {
+      
+    String uid = auth.currentUser!.uid;
+    await firestore.collection('users').doc(uid).collection('notes').doc(docID).update({
+      "title": titleC.text,
+      "desc": desC.text,
+    });
+    isLoading.value = false;
+
+
+    Get.back();
+    } catch (e) {
+      print(e);
+    isLoading.value = false;
+    Get.snackbar('Error', 'Tidak dapat mengubah note ini');
+    }
+    } else {
+      Get.snackbar('Error', 'Judul dan deskripsi tidak boleh kosong');
+    }
+  }
 }
