@@ -13,9 +13,19 @@ class EditNoteView extends GetView<EditNoteController> {
         title: const Text('EDIT NOTE'),
         centerTitle: true,
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<Map<String, dynamic>?>(
         future: controller.getNoteById(Get.arguments.toString()),
         builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (snapshot.data == null) {
+            return const Center(
+              child: Text("Tidak dapat mengambil informasi data note"),
+            );
+          }
           return ListView(
             padding: EdgeInsets.all(20),
             children: [

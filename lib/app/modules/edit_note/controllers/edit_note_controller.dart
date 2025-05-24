@@ -13,11 +13,17 @@ class EditNoteController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<Map<String, dynamic>?> getNoteById (String docID) async {
-    
-
+    try {
+      
     String uid = auth.currentUser!.uid;
     DocumentSnapshot<Map<String, dynamic>> doc = await firestore.collection('users').doc(uid).collection('notes').doc(docID).get();
     return doc.data();
+    } catch (e) {
+      print(e);
+      return null;
+    }
+
+
   }
   
   
