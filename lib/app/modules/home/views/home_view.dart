@@ -20,7 +20,10 @@ class HomeView extends GetView<HomeController> {
               onPressed: () {
                 Get.toNamed(Routes.PROFILE);
               },
-              icon: Icon(Icons.person))
+              icon: Icon(Icons.person)),
+              CircleAvatar(
+                backgroundImage: NetworkImage("url"),
+              )
         ],
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
