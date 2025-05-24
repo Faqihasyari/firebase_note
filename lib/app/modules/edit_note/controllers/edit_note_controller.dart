@@ -1,23 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class EditNoteController extends GetxController {
-  //TODO: Implement EditNoteController
+  RxBool isLoading = false.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  TextEditingController titleC = TextEditingController();
+  TextEditingController desC = TextEditingController();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Future<Map<String, dynamic>?> getNoteById (String docID) async {
+    
+
+    String uid = auth.currentUser!.uid;
+    DocumentSnapshot<Map<String, dynamic>> doc = await firestore.collection('users').doc(uid).collection('notes').doc(docID).get();
+    return doc.data();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  
+  
+  void editNote (){}
 }
