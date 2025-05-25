@@ -67,7 +67,7 @@ class RegisterView extends GetView<RegisterController> {
               () => ElevatedButton(
                   onPressed: () {
                     if (controller.isLoading.isFalse) {
-                      //eksekusi login
+                      //eksekusi login 
                       controller.register();
                     }
                   },

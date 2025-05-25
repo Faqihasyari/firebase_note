@@ -20,6 +20,7 @@ class RegisterController extends GetxController {
     Get.snackbar("ERROR", msg);
   }
 
+//function resister
   void register() async {
     isLoading.value = true;
     if (nameC.text.isNotEmpty &&
