@@ -34,7 +34,7 @@ class HomeView extends GetView<HomeController> {
             }
             print(snapshot.data!.docs);
             if (snapshot.data?.docs.length == 0 || snapshot.data == null) {
-              return const Center(child: Text("Belum Ada Notes"));
+              return const Center(child: Text("Belum Ada Notes Disini"));
 
             }
             return ListView.builder(
