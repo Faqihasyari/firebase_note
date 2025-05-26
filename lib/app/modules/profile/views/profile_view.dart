@@ -38,6 +38,9 @@ class ProfileView extends GetView<ProfileController> {
                 return ListView(
                   padding: EdgeInsets.all(20),
                   children: [
+                    CircleAvatar(
+                      radius: 50,
+                    ),
                     TextField(
                       controller: controller.emailC,
                       keyboardType: TextInputType.emailAddress,
