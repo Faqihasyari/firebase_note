@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:myfirebase/app/routes/app_pages.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileController extends GetxController {
   RxBool isloading = false.obs;
@@ -16,6 +18,11 @@ class ProfileController extends GetxController {
 
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  SupabaseClient supabase = Supabase.instance.client;
+
+  Future<void> updateProfile() async {
+    final picker = ImagePicker();
+  }
 
   void logout() async {
     try {
