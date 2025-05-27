@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
@@ -9,9 +11,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class ProfileController extends GetxController {
   RxBool isloading = false.obs;
   RxBool isHidden = true.obs;
+  var imageUrl = ''.obs;
 
-  TextEditingController emailC = TextEditingController();
   TextEditingController nameC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
   TextEditingController phoneC = TextEditingController();
   TextEditingController passC= TextEditingController();
 
@@ -20,8 +23,23 @@ class ProfileController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   SupabaseClient supabase = Supabase.instance.client;
 
-  Future<void> updateProfile() async {
+  Future<void> updateImage() async {
     final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
+  
+    if (pickedFile != null) {
+      final file = File(pickedFile.path);
+      final fileName = DateTime.now().microsecondsSinceEpoch.toString() + '.jpg';
+
+      try {
+        //upload ke supabase
+        await supabase.storage.from('images').upload(fileName, file);
+
+        final publicUrl = supabase.storage.from('profile').getPublicUrl(fileName);
+      } catch (e) {
+        
+      }
+    }
   }
 
   void logout() async {
