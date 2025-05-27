@@ -33,7 +33,7 @@ class ProfileController extends GetxController {
 
       try {
         //upload ke supabase
-        await supabase.storage.from('images').upload(fileName, file);
+        await supabase.storage.from('profile').upload(fileName, file);
 
         //ambil public URL nya
         final publicUrl = supabase.storage.from('profile').getPublicUrl(fileName);
