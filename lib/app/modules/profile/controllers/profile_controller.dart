@@ -35,9 +35,14 @@ class ProfileController extends GetxController {
         //upload ke supabase
         await supabase.storage.from('images').upload(fileName, file);
 
+        //ambil public URL nya
         final publicUrl = supabase.storage.from('profile').getPublicUrl(fileName);
+
+        imageUrl.value = publicUrl;
+        print('Upload berhasil: $publicUrl');
+      
       } catch (e) {
-        
+        print(e);
       }
     }
   }
