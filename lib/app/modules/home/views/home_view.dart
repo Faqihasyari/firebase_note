@@ -16,14 +16,14 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HOMEVIEW'),
         centerTitle: true,
         actions: [
-          IconButton(
-              onPressed: () {
-                Get.toNamed(Routes.PROFILE);
-              },
-              icon: Icon(Icons.person)),
-              CircleAvatar(
-                backgroundImage: NetworkImage("url"),
-              )
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.PROFILE);
+            },
+            child: CircleAvatar(
+              backgroundImage: NetworkImage("url"),
+            ),
+          )
         ],
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -35,7 +35,6 @@ class HomeView extends GetView<HomeController> {
             print(snapshot.data!.docs);
             if (snapshot.data?.docs.length == 0 || snapshot.data == null) {
               return const Center(child: Text("Belum Ada Notes Disini"));
-
             }
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
@@ -43,16 +42,18 @@ class HomeView extends GetView<HomeController> {
                 var docNote = snapshot.data!.docs[index];
                 Map<String, dynamic> note = docNote.data();
                 return ListTile(
-                  onTap: () => Get.toNamed(Routes.EDIT_NOTE,arguments: docNote.id),
+                  onTap: () =>
+                      Get.toNamed(Routes.EDIT_NOTE, arguments: docNote.id),
                   leading: CircleAvatar(
                     child: Text("${index + 1}"),
                   ),
                   title: Text("${note['title']}"),
                   subtitle: Text("${note['desc']}"),
-                  trailing:
-                      IconButton(onPressed: () {
+                  trailing: IconButton(
+                      onPressed: () {
                         controller.deleteNote(docNote.id);
-                      }, icon: Icon(Icons.delete)),
+                      },
+                      icon: Icon(Icons.delete)),
                 );
               },
             );

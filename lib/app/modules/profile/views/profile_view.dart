@@ -41,6 +41,9 @@ class ProfileView extends GetView<ProfileController> {
                     CircleAvatar(
                       radius: 50,
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextField(
                       controller: controller.emailC,
                       keyboardType: TextInputType.emailAddress,
