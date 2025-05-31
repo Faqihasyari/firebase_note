@@ -17,13 +17,10 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
         actions: [
           GestureDetector(
-            onTap: () {
-              Get.toNamed(Routes.PROFILE);
-            },
-            child: CircleAvatar(
-              backgroundImage: NetworkImage("diisi url gambar"),
-            ),
-          )
+              onTap: () {
+                Get.toNamed(Routes.PROFILE);
+              },
+              child: Icon(Icons.person))
         ],
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
