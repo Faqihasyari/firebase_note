@@ -84,7 +84,7 @@ class ProfileController extends GetxController {
     if (pickedFile != null) {
       final file = File(pickedFile.path);
       final fileName =
-          'WMK BACKGROUND${DateTime.now().microsecondsSinceEpoch}.jpg';
+          '${DateTime.now().microsecondsSinceEpoch}.jpg';
 
       try {
         //upload ke supabase
