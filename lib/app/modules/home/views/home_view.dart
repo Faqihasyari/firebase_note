@@ -21,7 +21,7 @@ class HomeView extends GetView<HomeController> {
               Get.toNamed(Routes.PROFILE);
             },
             child: CircleAvatar(
-              backgroundImage: NetworkImage("sdzsaddwea"),
+              backgroundImage: NetworkImage("diisi url gambar"),
             ),
           )
         ],

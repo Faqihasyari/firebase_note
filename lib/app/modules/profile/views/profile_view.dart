@@ -38,9 +38,15 @@ class ProfileView extends GetView<ProfileController> {
                 return ListView(
                   padding: EdgeInsets.all(20),
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                    ),
+                    GestureDetector(
+  onTap: () => controller.showAvatarOptions(),
+  child: Obx(() => CircleAvatar(
+        radius: 50,
+        backgroundImage: controller.imageUrl.value.isNotEmpty
+            ? NetworkImage(controller.imageUrl.value)
+            : AssetImage('assets/default_avatar.png') as ImageProvider,
+      )),
+),
                     SizedBox(
                       height: 20,
                     ),
