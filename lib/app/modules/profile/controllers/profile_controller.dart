@@ -95,7 +95,7 @@ class ProfileController extends GetxController {
             supabase.storage.from('profile').getPublicUrl(fileName);
 
         imageUrl.value = publicUrl;
-        print('Upload berhasil: $publicUrl');
+        print('Upload sudah berhasil: $publicUrl');
       } catch (e) {
         print(e);
       }
