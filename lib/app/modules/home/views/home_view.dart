@@ -28,9 +28,10 @@ class HomeView extends GetView<HomeController> {
                         backgroundColor: Colors.grey[400],
                       );
                     }
+                    Map<String, dynamic>? data = snapshot.data!.data();
                     return CircleAvatar(
                         backgroundImage: NetworkImage(
-                            'https://ui-avatars.com/api/?name=Faqih Asyari'));
+                            'https://ui-avatars.com/api/?name=${data!['name']}'));
                   }))
         ],
       ),
