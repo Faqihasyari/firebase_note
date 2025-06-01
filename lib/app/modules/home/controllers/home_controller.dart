@@ -16,6 +16,15 @@ class HomeController extends GetxController {
         .snapshots();
   }
 
+  Stream<DocumentSnapshot<Map<String, dynamic>>> streamProfile() async* {
+    String uid = auth.currentUser!.uid;
+
+    yield* await firestore
+        .collection("users")
+        .doc(uid)
+        .snapshots();
+  }
+
   void deleteNote(String docID) async {
     try {
       String uid = auth.currentUser!.uid;

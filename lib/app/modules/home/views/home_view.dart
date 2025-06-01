@@ -20,7 +20,18 @@ class HomeView extends GetView<HomeController> {
               onTap: () {
                 Get.toNamed(Routes.PROFILE);
               },
-              child: Icon(Icons.person))
+              child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                  stream: controller.streamProfile(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircleAvatar(
+                        backgroundColor: Colors.grey[400],
+                      );
+                    }
+                    return CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://ui-avatars.com/api/?name=Faqih Asyari'));
+                  }))
         ],
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
