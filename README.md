@@ -1,6 +1,7 @@
 # myfirebase
 # learn firebase auth
 A new Flutter project.
+flutter project firebase note
 
 ## Getting Started
 
